@@ -2,13 +2,14 @@ from google import genai
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import os
+from mangum import Mangum
 
 app = FastAPI()
 
 # Allow frontend to access backend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -32,3 +33,5 @@ def get_ai_recipe(ingredient: str):
         ai_recipe = "Sorry, I couldn't generate a recipe at this moment."
 
     return {"ai_recipe": ai_recipe}
+
+handler = Mangum(app)
