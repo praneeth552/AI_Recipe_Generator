@@ -15,7 +15,7 @@ const RecipeGenerator = () => {
     setRecipe("");
 
     try {
-      const response = await fetch(`https://e5lv3o4tx8.execute-api.us-east-1.amazonaws.com/ai_recipes/${ingredient}`);
+      const response = await fetch(`https://ai-recipe-generator-1-g8je.onrender.com/ai_recipes/${ingredient}`);
       const data = await response.json();
 
       if (response.ok) {
